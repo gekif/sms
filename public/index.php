@@ -6,8 +6,12 @@ if (isset($_POST['submit'])) {
     if (isset($_POST['number']) && isset($_POST['message'])) {
         $client = new Services_Twilio($config['account_sid'], $config['auth_token']);
 
-//        $client->account->messages->sendMessage($config['phone_number'], $_POST['number'], $_POST['message']);
-        $client->account->sms_message->create($config['phone_number'], $_POST['number'], $_POST['message']);
+        try {
+            $client->account->sms_message->create($config['phone_number'], $_POST['number'], $_POST['message']);
+
+        } catch (Services_Twilio_RestException $e) {
+            die('Sorry could not connect because ' . $e->getMessage());
+        }
 
         echo "<h3 class='text-center bg-success'>Message has been sent</h3>";
     }

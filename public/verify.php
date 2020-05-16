@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 
         } else {
             echo "<div class='row>";
-            echo "<h3 class='bg-danger text-center'> Wrong code, please tru again</h3>";
+            echo "<h3 class='bg-danger text-center'> Wrong code, please try again</h3>";
             echo "</div>";
         }
     }
